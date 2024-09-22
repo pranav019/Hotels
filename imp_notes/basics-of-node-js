@@ -1,0 +1,181 @@
+```javascript
+var fs = require("fs");
+var os = require("os");
+```
+
+This code snippet imports two built-in modules in Node.js:
+
+**1. `fs` (File System):**
+
+- Provides functions for interacting with the file system on the server.
+- Common operations include:
+  - Reading and writing files
+  - Creating, deleting, and renaming directories
+  - Checking file and directory existence
+  - Managing file permissions
+
+**Example usage:**
+
+```javascript
+// Reading a file
+fs.readFile("myfile.txt", "utf8", (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+
+// Writing to a file
+fs.writeFile("newfile.txt", "Hello, world!", (err) => {
+  if (err) throw err;
+  console.log("File written successfully.");
+});
+```
+
+**2. `os` (Operating System):**
+
+- Provides information about the underlying operating system.
+- Common functions include:
+  - Getting the current platform and architecture
+  - Retrieving system uptime
+  - Accessing network interfaces and IP addresses
+  - Obtaining information about CPU and memory usage
+
+**Example usage:**
+
+```javascript
+console.log("Operating System:", os.platform());
+console.log("CPU Architecture:", os.arch());
+console.log("System Uptime:", os.uptime());
+```
+
+**In summary:**
+
+- The code imports the `fs` and `os` modules.
+- The `fs` module allows you to perform file system operations.
+- The `os` module provides information about the operating system.
+
+By using these modules, you can interact with the file system and gather system information within your Node.js applications.
+
+<!-- fs functionality -->
+
+**fs.appendfile :-**
+
+**`fs.appendFile`** is a method used in Node.js to append data to an existing file. It's a non-blocking asynchronous function, meaning it will continue executing other parts of your code while the file operation is in progress.
+
+**Syntax:**
+
+```javascript
+fs.appendFile(path, data, [encoding], callback);
+```
+
+**Parameters:**
+
+- **`path`:** The path to the file to be appended to.
+- **`data`:** The data to be appended to the file. It can be a string or a Buffer.
+- **`encoding`:** (Optional) The encoding to use for the data. Default is 'utf8'.
+- **`callback`:** (Optional) A callback function that is called when the operation is complete. It takes two arguments: an error object (if an error occurred) and a null value (if the operation was successful).
+
+**Example:**
+
+```javascript
+fs.appendFile("myFile.txt", "This is new data.", (err) => {
+  if (err) throw err;
+  console.log("Data appended to file!");
+});
+```
+
+This code will append the string "This is new data." to the file named "myFile.txt". If the file doesn't exist, it will be created. If an error occurs during the operation, it will be thrown.
+
+**Note:**
+
+- If you need to append data synchronously, you can use `fs.appendFileSync`. However, using synchronous operations can block your application's execution.
+- Always handle potential errors using the callback function or `try...catch` blocks to ensure your application's stability.
+
+By understanding `fs.appendFile`, you can effectively manipulate files in your Node.js applications and add content to existing files.
+
+**The callback function in `fs.appendFile` is used to handle the asynchronous nature of the file operation.**
+
+Asynchronous operations in Node.js allow the program to continue executing other tasks while waiting for the file operation to complete. This prevents the application from freezing or becoming unresponsive.
+
+**Here's how the callback function works:**
+
+1. **You call `fs.appendFile`:** When you call `fs.appendFile`, you provide a callback function as the last argument.
+2. **Node.js starts the operation:** Node.js starts the process of appending the data to the file.
+3. **Other code execution:** While the file operation is in progress, Node.js can continue executing other parts of your code.
+4. **Callback function execution:** Once the file operation is complete, Node.js will call the callback function you provided.
+5. **Error handling or success:** Inside the callback function, you can check for errors and handle them appropriately. If there are no errors, you can proceed with further actions based on the successful completion of the file operation.
+
+**Example:**
+
+```javascript
+fs.appendFile("myFile.txt", "This is new data.", (err) => {
+  if (err) {
+    console.error("Error appending to file:", err);
+  } else {
+    console.log("Data appended to file successfully!");
+  }
+});
+```
+
+In this example, the callback function checks for errors. If an error occurs, it logs an error message. If the operation is successful, it logs a success message.
+
+**By using a callback function, you can ensure that your code doesn't wait for the file operation to finish before continuing, making your application more responsive.**
+
+<!-- LODASh -->
+
+## Lodash: A JavaScript Utility Library
+
+Lodash is a popular JavaScript library that provides utility functions for common programming tasks. It offers a concise and consistent way to work with arrays, objects, strings, numbers, and more.
+
+**Key benefits of using Lodash:**
+
+- **Conciseness:** Lodash functions provide a more concise syntax compared to writing the equivalent code manually.
+- **Consistency:** Lodash maintains a consistent API across its functions, making it easy to learn and use.
+- **Efficiency:** Many Lodash functions are optimized for performance, especially when working with large datasets.
+- **Readability:** The concise and expressive syntax of Lodash functions can improve code readability.
+
+**Most Used Lodash Functions:**
+
+Here are some of the most commonly used Lodash functions:
+
+### Array Functions
+
+- **`_.map`:** Creates a new array by transforming each element of the given array.
+- **`_.filter`:** Creates a new array containing elements from the given array that satisfy the provided predicate function.
+- **`_.reduce`:** Applies a function against an accumulator and each element in the array to reduce it to a single value.
+- **`_.forEach`:** Iterates over elements of an array, executing a transform function for each element.
+- **`_.find`:** Returns the first element in the array that passes a provided predicate function.
+- **`_.sortBy`:** Sorts an array by one or more properties.
+
+### Object Functions
+
+- **`_.assign`:** Assigns own enumerable properties of source objects to the destination object.
+- **`_.keys`:** Returns an array of own enumerable property names of an object.
+- **`_.values`:** Returns an array of own enumerable property values of an object.
+- **`_.pick`:** Creates an object composed of picked properties from the given object.
+- **`_.omit`:** Creates an object composed of the specified properties from the given object.
+
+### Other Useful Functions
+
+- **`_.debounce`:** Creates a debounced function that delays the execution of `func` until after `wait` milliseconds have elapsed since the last call.
+- **`_.throttle`:** Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
+- **`_.clone`:** Creates a shallow clone of `value`.
+- **`_.get`:** Gets the value of a path on `object`.
+- **`_.set`:** Sets the value of a path on `object`.
+
+**Example:**
+
+```javascript
+const users = [
+  { name: "Alice", age: 30 },
+  { name: "Bob", age: 25 },
+  { name: "Charlie", age: 35 },
+];
+
+// Using _.filter and _.map
+const youngUsers = _.filter(users, (user) => user.age < 30);
+const userNames = _.map(youngUsers, (user) => user.name);
+
+console.log(userNames); // Output: ['Bob']
+```
+
+By using Lodash, you can write more concise, readable, and efficient JavaScript code.

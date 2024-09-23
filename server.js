@@ -7,6 +7,8 @@ const db = require("./db");
 const bodyParser = require("body-parser");
 //The bodyParser.json() middleware is applied to the Express app, instructing it to parse the request body as JSON.
 app.use(bodyParser.json());
+// dotenv file imported
+require("dotenv").config();
 
 // ----------------------------------------------------------------------
 
@@ -29,6 +31,7 @@ const menuRoutes = require("./routes/menuRoutes");
 app.use("/menu", menuRoutes);
 
 // Final Call
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log("Server is listening on port " + PORT);
 });
